@@ -114,7 +114,7 @@ async def send_invoice(bot, chat_id, amount, title, tariff):
     await bot.send_invoice(
         chat_id=chat_id,
         title=title,
-        description=f"Оформление подписки: {title}",
+        description=f"Оформление подписки: {title}\n" + "Оплата проводится через офиуаильную площадку Юкасса",
         payload=tariff,
         provider_token=utils.PAYMENT_TOKEN,
         currency="RUB",
