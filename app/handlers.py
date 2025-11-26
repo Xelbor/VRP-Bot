@@ -114,7 +114,7 @@ async def send_invoice(bot, chat_id, amount, title, tariff):
     await bot.send_invoice(
         chat_id=chat_id,
         title=title,
-        description=f"Оформление подписки: {title}\n" + "Оплата проводится через официаильную площадку Юкасса",
+        description=f"Оформление подписки: {title}\n" + "Оплата проводится через официальную площадку Юкасса",
         payload=tariff,
         provider_token=utils.PAYMENT_TOKEN,
         currency="RUB",
@@ -203,3 +203,4 @@ async def handle_markup_keyboard(message: types.Message):
     elif message.text == "🔑 Мои ключи":
 
         await check_key(message)
+
