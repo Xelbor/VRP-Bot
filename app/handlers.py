@@ -158,9 +158,9 @@ async def successful_payment(message: types.Message):
 async def manual(message: types.Message):
     markup = types.InlineKeyboardMarkup(
         inline_keyboard=[
-            [types.InlineKeyboardButton(text="Windows / Linux"), types.InlineKeyboardButton(text="Android")],
-            [types.InlineKeyboardButton(text="IOS")],
-            [types.InlineKeyboardButton(text="◀️ Назад")]
+            [types.InlineKeyboardButton(text="Windows / Linux", callback_data="windows_linux_call"), types.InlineKeyboardButton(text="Android", callback_data="android_call")],
+            [types.InlineKeyboardButton(text="IOS", callback_data="ios_call")],
+            [types.InlineKeyboardButton(text="◀️ Назад", callback_data="back_call2")]
         ]
     )
     await message.answer(manual_text, parse_mode='HTML', reply_markup=markup)
@@ -209,6 +209,7 @@ async def handle_markup_keyboard(message: types.Message):
         await buy(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
