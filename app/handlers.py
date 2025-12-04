@@ -26,7 +26,7 @@ async def give_gift(message: types.Message):
 async def main(message: types.Message):
     markup = types.ReplyKeyboardMarkup(
         keyboard=[
-            [types.KeyboardButton(text="🔑 Мои ключи""), types.KeyboardButton(text="📲 Установка")],
+            [types.KeyboardButton(text="🔑 Мои ключи"), types.KeyboardButton(text="📲 Установка")],
             [types.KeyboardButton(text="💳 Купить подписку"), types.KeyboardButton(text="🎁 Бесплатный период")],
             [types.KeyboardButton(text="❓ Помощь")]
         ],
@@ -192,8 +192,8 @@ async def gift(message: types.Message):
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()
 async def handle_markup_keyboard(message: types.Message):
-    if message.text == "🔑 Получить ключ":
-        await buy(message)
+    if message.text == "🔑 Мои ключи":
+        await check_key(message)
     elif message.text == "📲 Установка":
         await manual(message)
     elif message.text == "💳 Купить подписку":
@@ -202,6 +202,7 @@ async def handle_markup_keyboard(message: types.Message):
         await buy(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
