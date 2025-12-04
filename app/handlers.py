@@ -193,7 +193,7 @@ async def gift(message: types.Message):
 @router.message()
 async def handle_markup_keyboard(message: types.Message):
     if message.text == "🔑 Получить ключ":
-        await help_cmd(message)
+        await buy(message)
     elif message.text == "📲 Установка":
         await manual(message)
     elif message.text == "💳 Купить подписку":
@@ -201,8 +201,7 @@ async def handle_markup_keyboard(message: types.Message):
     elif message.text == "🎁 Бесплатный период":
         await buy(message)
     elif message.text == "❓ Помощь":
-
-        await check_key(message)
+        await help_cmd(message)
 
 
 
