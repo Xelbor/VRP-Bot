@@ -191,7 +191,7 @@ async def check_key(message: types.Message):
 @router.message(Command('gift'))
 async def gift(message: types.Message):
     if utils.check_users_gift(message.from_user.id):
-        await message.answer("Вы уже использовали бесплатный период 👀 \n\nДля просмотра ключа используйте /key")
+        await message.answer("Вы уже использовали бесплатный период 👀 \n\nДля просмотра ключа нажмите кнопку 🔑 Мои ключи")
     else:
         await give_gift(message)
 
@@ -209,6 +209,7 @@ async def handle_markup_keyboard(message: types.Message):
         await gift(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
