@@ -26,7 +26,7 @@ async def give_gift(message: types.Message):
 async def main(message: types.Message):
     markup = types.ReplyKeyboardMarkup(
         keyboard=[
-            [types.KeyboardButton(text="🔑 Получить ключ"), types.KeyboardButton(text="📲 Установка")],
+            [types.KeyboardButton(text="🔑 Мои ключи""), types.KeyboardButton(text="📲 Установка")],
             [types.KeyboardButton(text="💳 Купить подписку"), types.KeyboardButton(text="🎁 Бесплатный период")],
             [types.KeyboardButton(text="❓ Помощь")]
         ],
@@ -202,6 +202,7 @@ async def handle_markup_keyboard(message: types.Message):
         await buy(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
