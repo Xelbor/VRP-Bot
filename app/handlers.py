@@ -204,11 +204,12 @@ async def handle_markup_keyboard(message: types.Message):
     elif message.text == "📲 Установка":
         await manual(message)
     elif message.text == "💳 Купить подписку":
-        await gift(message)
-    elif message.text == "🎁 Бесплатный период":
         await buy(message)
+    elif message.text == "🎁 Бесплатный период":
+        await gift(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
