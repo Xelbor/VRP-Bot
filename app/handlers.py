@@ -183,7 +183,7 @@ async def check_key(message: types.Message):
     else:
         await message.answer(
             "У вас пока нет ключа.\n\n"
-            "Используйте /buy или получите бесплатный период /gift"
+            "Нажмите кнопку 🎁 Бесплатный период, или купите, нажав кнопку 💳 Купить подписку"
         )
 
 
@@ -209,6 +209,7 @@ async def handle_markup_keyboard(message: types.Message):
         await gift(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
