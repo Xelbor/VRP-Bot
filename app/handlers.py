@@ -58,7 +58,7 @@ async def buy(message: types.Message):
         ]
     )
 
-    await message.answer(buy_text, parse_mode='html', reply_markup=markup)
+    await message.answer(key_type_text, parse_mode='html', reply_markup=markup)
 
 
 @router.callback_query(F.data.startswith("buy_"))
@@ -202,6 +202,7 @@ async def handle_markup_keyboard(message: types.Message):
         await buy(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
