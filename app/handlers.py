@@ -156,7 +156,13 @@ async def successful_payment(message: types.Message):
 # -------------------- MANUAL --------------------
 @router.message(Command('manual'))
 async def manual(message: types.Message):
-    await message.answer(manual_text, parse_mode='HTML')
+    markup = types.InlineKeyboardMarkup(
+        inline_keyboard=[
+            [types.InlineKeyboardButton(text="Оплатить 💳", callback_data=f"pay_{call.data}")],
+            [types.InlineKeyboardButton(text="⬅ Назад", callback_data="back_to_buy")]
+        ]
+    )
+    await message.answer(manual_text, parse_mode='HTML', reply_markup=markup)
 
 
 # -------------------- CHECK KEY --------------------
@@ -202,6 +208,7 @@ async def handle_markup_keyboard(message: types.Message):
         await buy(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
+
 
 
 
