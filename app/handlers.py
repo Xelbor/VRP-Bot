@@ -192,16 +192,17 @@ async def gift(message: types.Message):
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()
 async def handle_markup_keyboard(message: types.Message):
-    if message.text == "❗️ Помощь":
+    if message.text == "🔑 Получить ключ":
         await help_cmd(message)
-    elif message.text == "📖 Инструкция":
+    elif message.text == "📲 Установка":
         await manual(message)
-    elif message.text == "🚀 Пробный период":
+    elif message.text == "💳 Купить подписку":
         await gift(message)
-    elif message.text == "💰 Купить ключ":
+    elif message.text == "🎁 Бесплатный период":
         await buy(message)
-    elif message.text == "🔑 Мои ключи":
+    elif message.text == "❓ Помощь":
 
         await check_key(message)
+
 
 
