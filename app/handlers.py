@@ -35,7 +35,6 @@ async def main(message: types.Message):
 
     await message.answer(welcome_text, reply_markup=markup, parse_mode='HTML')
 
-
 # -------------------- HELP --------------------
 @router.message(Command('help'))
 async def help_cmd(message: types.Message):
@@ -59,7 +58,6 @@ async def buy(message: types.Message):
     )
 
     await message.answer(buy_text, parse_mode='html', reply_markup=markup)
-
 
 @router.callback_query(F.data.startswith("buy_"))
 async def callback_buy(call: types.CallbackQuery):
@@ -159,12 +157,17 @@ async def manual(message: types.Message):
     markup = types.InlineKeyboardMarkup(
         inline_keyboard=[
             [types.InlineKeyboardButton(text="💻 Windows / Linux", callback_data="windows_linux_call"), types.InlineKeyboardButton(text="📱 Android", callback_data="android_call")],
-            [types.InlineKeyboardButton(text="🍏 IOS", callback_data="ios_call")],
-            [types.InlineKeyboardButton(text="◀️ Назад", callback_data="back_call2")]
+            [types.InlineKeyboardButton(text="🍏 IOS", callback_data="ios_call")]
         ]
     )
     await message.answer(manual_text, parse_mode='HTML', reply_markup=markup)
 
+@router.callback_query(F.data.endswith("_call"))
+async def device_instruction(call: types.CallbackQuery):
+    #bot = call.bot
+    match call:
+        case "windows_linux_call":
+            await call.bot.message.answer("hi")
 
 # -------------------- CHECK KEY --------------------
 @router.message(Command('key'))
