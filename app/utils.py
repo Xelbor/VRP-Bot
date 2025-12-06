@@ -13,8 +13,6 @@ load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 PAYMENT_TOKEN = os.getenv("PAYMENT_TOKEN")
 
-SUB_PORT = 3196
-
 db = sqlite3.connect('users.db')
 cursor = db.cursor()
 
@@ -116,5 +114,5 @@ def create_a_subscribe_link(expiryTime):
 
     r = session.post(f"{BASE_URL_USE}/panel/api/inbounds/addClient", json=payload)
 
-    subscribe_link = f"{BASE_IP_USE}:{SUB_PORT}/{PASSPHRASE_USE}/sub/{subscription_generated}"
+    subscribe_link = f"{BASE_IP_USE}/{PASSPHRASE_USE}/sub/{subscription_generated}"
     return subscribe_link
