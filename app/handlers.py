@@ -157,7 +157,7 @@ async def manual(message: types.Message):
     markup = types.InlineKeyboardMarkup(
         inline_keyboard=[
             [types.InlineKeyboardButton(text="💻 Windows / Linux", callback_data="windows_linux_call"), types.InlineKeyboardButton(text="📱 Android", callback_data="android_call")],
-            [types.InlineKeyboardButton(text="🍏 IOS", callback_data="ios_call")]
+            [types.InlineKeyboardButton(text="🍎 IOS", callback_data="ios_call")]
         ]
     )
     await message.answer(manual_text, parse_mode='HTML', reply_markup=markup)
@@ -173,17 +173,17 @@ async def device_instruction(call: types.CallbackQuery):
     markup2 = types.InlineKeyboardMarkup(
         inline_keyboard=[
             [types.InlineKeyboardButton(text="💻 Windows / Linux", callback_data="windows_linux_call"), types.InlineKeyboardButton(text="📱 Android", callback_data="android_call")],
-            [types.InlineKeyboardButton(text="🍏 IOS", callback_data="ios_call")]
+            [types.InlineKeyboardButton(text="🍎 IOS", callback_data="ios_call")]
         ]
     )
 
     match call.data:
         case "windows_linux_call":
-            await call.message.edit_text("Windows manual", reply_markup=markup1)
+            await call.message.edit_text(pc_manual_text, parse_mode='HTML', reply_markup=markup1)
         case "android_call":
-            await call.message.edit_text("Android manual", reply_markup=markup1)
+            await call.message.edit_text(android_manual_text, parse_mode='HTML', reply_markup=markup1)
         case "ios_call":
-            await call.message.edit_text("iOS manual", reply_markup=markup1)
+            await call.message.edit_text(ios_manual_text, parse_mode='HTML', reply_markup=markup1)
         case "back_call":
             await call.message.edit_text(manual_text, parse_mode='HTML', reply_markup=markup2)
 
