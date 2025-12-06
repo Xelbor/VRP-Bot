@@ -209,20 +209,3 @@ async def handle_markup_keyboard(message: types.Message):
         await gift(message)
     elif message.text == "❓ Помощь":
         await help_cmd(message)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
