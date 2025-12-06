@@ -164,13 +164,28 @@ async def manual(message: types.Message):
 
 @router.callback_query(F.data.endswith("_call"))
 async def device_instruction(call: types.CallbackQuery):
+    markup1 = types.InlineKeyboardMarkup(
+        inline_keyboard=[
+            [types.InlineKeyboardButton(text="◀️ Назад", callback_data="back_call")]
+        ]
+    )
+
+    markup2 = types.InlineKeyboardMarkup(
+        inline_keyboard=[
+            [types.InlineKeyboardButton(text="💻 Windows / Linux", callback_data="windows_linux_call"), types.InlineKeyboardButton(text="📱 Android", callback_data="android_call")],
+            [types.InlineKeyboardButton(text="🍏 IOS", callback_data="ios_call")]
+        ]
+    )
+
     match call.data:
         case "windows_linux_call":
-            await call.message.edit_text("Windows manual")
+            await call.message.edit_text("Windows manual", reply_markup=markup1)
         case "android_call":
-            await call.message.edit_text("Android manual")
+            await call.message.edit_text("Android manual", reply_markup=markup1)
         case "ios_call":
-            await call.message.edit_text("iOS manual")
+            await call.message.edit_text("iOS manual", reply_markup=markup1)
+        case "back_call":
+            await call.message.edit_text(manual_text, parse_mode='HTML', reply_markup=markup2)
 
 # -------------------- CHECK KEY --------------------
 @router.message(Command('key'))
