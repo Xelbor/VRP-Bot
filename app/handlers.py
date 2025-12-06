@@ -166,11 +166,11 @@ async def manual(message: types.Message):
 async def device_instruction(call: types.CallbackQuery):
     match call.data:
         case "windows_linux_call":
-            await call.message.answer("Windows manual")
+            await call.message.edit_text("Windows manual")
         case "android_call":
-            await call.message.answer("Android manual")
+            await call.message.edit_text("Android manual")
         case "ios_call":
-            await call.message.answer("iOS manual")
+            await call.message.edit_text("iOS manual")
 
 # -------------------- CHECK KEY --------------------
 @router.message(Command('key'))
