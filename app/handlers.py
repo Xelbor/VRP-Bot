@@ -164,10 +164,13 @@ async def manual(message: types.Message):
 
 @router.callback_query(F.data.endswith("_call"))
 async def device_instruction(call: types.CallbackQuery):
-    #bot = call.bot
-    match call:
+    match call.data:
         case "windows_linux_call":
-            await call.bot.message.answer("hi")
+            await call.message.answer("Windows manual")
+        case "android_call":
+            await call.message.answer("Android manual")
+        case "ios_call":
+            await call.message.answer("iOS manual")
 
 # -------------------- CHECK KEY --------------------
 @router.message(Command('key'))
