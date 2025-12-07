@@ -54,7 +54,7 @@ def create_a_subscribe_link(expiryTime):
     session.verify = False
     requests.packages.urllib3.disable_warnings()
 
-    r = session.post(f"{PANEL_URL}/login", json=login_data)
+    r = session.post(f"{PANEL_API_URL}/login", json=login_data)
     print("Login status:", r.status_code)
 
     # Создание клиента
@@ -80,7 +80,7 @@ def create_a_subscribe_link(expiryTime):
         "settings": settings_str
     }
 
-    r = session.post(f"{PANEL_URL}/panel/api/inbounds/addClient", json=payload)
+    r = session.post(f"{PANEL_API_URL}/panel/api/inbounds/addClient", json=payload)
     print(r.status_code)
 
     subscribe_link = f"{BASE_URL}/{PASSPHRASE}/sub/{subscription_generated}"
