@@ -20,6 +20,8 @@ USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
 PASSPHRASE = os.getenv("PASSPHRASE")
 
+SERVICE_CHAT_ID = os.getenv("SERVICE_CHAT_ID")
+
 db = sqlite3.connect('users.db')
 cursor = db.cursor()
 

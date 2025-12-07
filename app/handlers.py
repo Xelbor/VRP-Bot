@@ -6,7 +6,6 @@ import app.utils as utils
 
 router = Router()
 
-
 # -------------------- FREE GIFT --------------------
 async def give_gift(message: types.Message):
     subscribe_link = utils.create_a_subscribe_link(-864000000)
@@ -218,7 +217,9 @@ async def gift(message: types.Message):
 
 @router.message(Command('send_tech_works'))
 async def tech_works(message: types.Message):
-    await message.answer(str(message.chat.id))
+    print(utils.SERVICE_CHAT_ID)
+    if (message.chat.id == utils.SERVICE_CHAT_ID):
+        await message.answer(str(message.chat.id))
 
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()
