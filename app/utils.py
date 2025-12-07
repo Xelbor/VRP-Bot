@@ -54,7 +54,7 @@ def create_a_subscribe_link(expiryTime):
     session.verify = False
     requests.packages.urllib3.disable_warnings()
 
-    r = session.post(f"{PANEL_API_URL}/login", json=login_data)
+    r = session.post(f"{BASE_URL}/login", json=login_data)
     print("Login status:", r.status_code)
 
     # Создание клиента
