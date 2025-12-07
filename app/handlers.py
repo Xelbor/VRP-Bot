@@ -218,7 +218,7 @@ async def gift(message: types.Message):
 
 @router.message(Command('send_tech_works'))
 async def tech_works(message: types.Message):
-    await message.answer(message.chat.id)
+    await message.answer(str(message.chat.id))
 
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()
