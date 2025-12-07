@@ -14,7 +14,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 PAYMENT_TOKEN = os.getenv("PAYMENT_TOKEN")
 
 # Используем один сервер
-PANEL_URL = os.getenv("PANEL_URL")
+PANEL_API_URL = os.getenv("PANEL_API_URL")
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
