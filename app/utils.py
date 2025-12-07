@@ -14,6 +14,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 PAYMENT_TOKEN = os.getenv("PAYMENT_TOKEN")
 
 # Используем один сервер
+PANEL_URL = os.getenv("PANEL_URL")
 BASE_URL = os.getenv("BASE_URL")
 USERNAME = os.getenv("USERNAME")
 PASSWORD = os.getenv("PASSWORD")
@@ -53,7 +54,7 @@ def create_a_subscribe_link(expiryTime):
     session.verify = False
     requests.packages.urllib3.disable_warnings()
 
-    r = session.post(f"{BASE_URL}/login", json=login_data)
+    r = session.post(f"{PANEL_URL}/login", json=login_data)
     print("Login status:", r.status_code)
 
     # Создание клиента
@@ -79,7 +80,8 @@ def create_a_subscribe_link(expiryTime):
         "settings": settings_str
     }
 
-    r = session.post(f"{BASE_URL}/panel/api/inbounds/addClient", json=payload)
+    r = session.post(f"{PANEL_URL}/panel/api/inbounds/addClient", json=payload)
+    print(r.status_code)
 
     subscribe_link = f"{BASE_URL}/{PASSPHRASE}/sub/{subscription_generated}"
     return subscribe_link
