@@ -232,6 +232,18 @@ async def tech_works(message: types.Message):
         await message.answer(str(message.chat.id))
 
 # ----------------------- BROADCAST ----------------------
+@router.message(Command('broadcast'))
+async def broadcast_handler(message: types.Message):
+    if(message.from_user.id != utils.SERVICE_CHAT_ID):
+        await message.answer("Нет прав на выполнение команды")
+        return
+    
+    text = message.text.replace("/broadcast", "", 1).strip()
+    if not text:
+        await message.answer("Текст рассылки пуст")
+        return
+    await broadcast(message.bot, text)
+
 async def broadcast(bot: Bot, text: str):
     with utils.sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
@@ -244,18 +256,6 @@ async def broadcast(bot: Bot, text: str):
                 await asyncio.sleep(0.05)  # защита от FloodWait
             except Exception:
                 pass  # пользователь мог заблокировать бота
-
-@router.message(Command('broadcast'))
-async def broadcast_handler(message: types.Message):
-    if(message.from_user.id != utils.SERVICE_CHAT_ID):
-        await message.answer("Нет прав на выполнение команды")
-        return
-    
-    text = message.text.replace("/broadcast", "").strip()
-    if not text:
-        await message.answer("Текст рассылки пуст")
-        return
-    await broadcast(message.bot, text)
 
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()
