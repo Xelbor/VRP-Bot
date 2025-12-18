@@ -28,7 +28,7 @@ async def main(message: types.Message):
     with utils.sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT OR IGNORE INTO users (user_id) VALUES (?)",
+            "INSERT OR IGNORE INTO chats (user_id) VALUES (?)",
             (user_id,)
         )
         conn.commit()
