@@ -248,9 +248,13 @@ async def broadcast(bot: Bot, text: str):
 @router.message(Command('broadcast'))
 async def broadcast_handler(message: types.Message):
     if(message.from_user.id != utils.SERVICE_CHAT_ID):
+        await message.answer("Нет прав на выполнение команды")
         return
     
     text = message.text.replace("/broadcast", "").strip()
+    if not text:
+        await message.answer("Текст рассылки пуст")
+        return
     await broadcast(message.bot, text)
 
 # -------------------- MARKUP BUTTONS --------------------
