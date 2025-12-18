@@ -1,8 +1,9 @@
-from aiogram import types, F, Router
+from aiogram import types, F, Router, Bot
 from aiogram.filters import CommandStart, Command
 from datetime import datetime, timedelta
 from app.large_texts import *
 import app.utils as utils
+import asyncio
 
 router = Router()
 
@@ -23,6 +24,15 @@ async def give_gift(message: types.Message):
 # -------------------- START --------------------
 @router.message(CommandStart())
 async def main(message: types.Message):
+    user_id = message.from_user.id
+    with utils.sqlite3.connect("users.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT OR IGNORE INTO users (user_id) VALUES (?)",
+            (user_id,)
+        )
+        conn.commit()
+
     markup = types.ReplyKeyboardMarkup(
         keyboard=[
             [types.KeyboardButton(text="🔑 Мои ключи"), types.KeyboardButton(text="📲 Установка")],
@@ -220,6 +230,28 @@ async def tech_works(message: types.Message):
     print(utils.SERVICE_CHAT_ID)
     if (message.chat.id == utils.SERVICE_CHAT_ID):
         await message.answer(str(message.chat.id))
+
+# ----------------------- BROADCAST ----------------------
+async def broadcast(bot: Bot, text: str):
+    with utils.sqlite3.connect("users.db") as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT user_id FROM users")
+        users = cursor.fetchall()
+
+        for (user_id,) in users:
+            try:
+                await bot.send_message(user_id, text)
+                await asyncio.sleep(0.05)  # защита от FloodWait
+            except Exception:
+                pass  # пользователь мог заблокировать бота
+
+@router.message(Command('broadcast'))
+async def broadcast_handler(message: types.Message):
+    if(message.from_user.id != utils.SERVICE_CHAT_ID):
+        return
+    
+    text = message.text.replace("/broadcast", "").strip()
+    await broadcast(message.bot, text)
 
 # -------------------- MARKUP BUTTONS --------------------
 @router.message()

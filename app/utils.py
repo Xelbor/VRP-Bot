@@ -31,6 +31,10 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS trials (
                start_date TEXT
 )""")
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS chats (
+               user_id  INTEGER  PRIMARY KEY,
+)""")
+
 db.commit()
 db.close()
 
