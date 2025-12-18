@@ -235,7 +235,7 @@ async def tech_works(message: types.Message):
 async def broadcast(bot: Bot, text: str):
     with utils.sqlite3.connect("users.db") as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT user_id FROM users")
+        cursor.execute("SELECT user_id FROM chats")
         users = cursor.fetchall()
 
         for (user_id,) in users:
