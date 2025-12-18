@@ -26,13 +26,13 @@ db = sqlite3.connect('users.db')
 cursor = db.cursor()
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS trials (
-               user_id  PRIMARY KEY,
+               user_id INTEGER PRIMARY KEY,
                vpn_subscribe TEXT,
                start_date TEXT
 )""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS chats (
-               user_id  INTEGER  PRIMARY KEY,
+               user_id INTEGER PRIMARY KEY
 )""")
 
 db.commit()
