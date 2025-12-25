@@ -1,6 +1,6 @@
 from aiogram import types, F, Router, Bot
 from aiogram.filters import CommandStart, Command
-from datetime import datetime, timedelta
+from datetime import timedelta
 import datetime
 from app.large_texts import *
 import app.utils as utils
