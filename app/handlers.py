@@ -1,7 +1,6 @@
 from aiogram import types, F, Router, Bot
 from aiogram.filters import CommandStart, Command
-from datetime import timedelta
-import datetime
+from datetime import datetime, timedelta
 from app.large_texts import *
 import app.utils as utils
 import asyncio
@@ -18,7 +17,7 @@ async def main(message: types.Message):
         cursor = conn.cursor()
         cursor.execute(
             "INSERT OR IGNORE INTO users (user_id, created_at) VALUES (?, ?)",
-            (message.from_user.id, datetime.datetime.now(datetime.UTC))
+            (message.from_user.id, datetime.now())
         )
         
         if ref_code and ref_code.startswith("ref_"):
@@ -44,7 +43,7 @@ async def main(message: types.Message):
                     cursor.execute(
                         """INSERT INTO refs (referrer_id, invited_id, bonus, created_at)
                            VALUES (?, ?, ?, ?)""",
-                        (ref_owner[0], message.from_user.id, 0, datetime.datetime.now(datetime.UTC))
+                        (ref_owner[0], message.from_user.id, 0, datetime.now())
                     )
 
                     conn.commit()
@@ -329,4 +328,5 @@ async def handle_markup_keyboard(message: types.Message):
     elif message.text == "📲 Установка":
         await manual(message)
     elif message.text == "💸 Скидка":
+
         await referal_system(message)
